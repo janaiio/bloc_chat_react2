@@ -33,7 +33,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <RoomList onClick={ e => this.setActiveRoom(e) }
+        <RoomList
+          onClick = { this.setActiveRoom.bind(this) }
           firebase={ firebase }
           rooms={ this.props.rooms }
         />

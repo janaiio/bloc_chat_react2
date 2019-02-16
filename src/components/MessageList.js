@@ -21,13 +21,24 @@ class MessageList extends Component {
     });
   }
 
+//  associateRoom(){
+
+//    {
+//      username: "<USERNAME HERE>",
+//      content: "<CONTENT OF THE MESSAGE HERE>",
+//      sentAt: "<TIME MESSAGE WAS SENT HERE>",
+//      roomId: "<ROOM UID HERE>"
+//  };
+
+//  }
+
 
   render(){
     return(
       <section>
       {
         this.state.messages.map( (message, index) =>
-          <p className="messages" key={index} > {message.name}</p>,
+          <p className="messages" key={index} > {message.content}</p>,
         )
       }
       </section>
