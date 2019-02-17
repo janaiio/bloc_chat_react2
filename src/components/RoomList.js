@@ -36,7 +36,7 @@ class RoomList extends Component {
       <section>
         {
           this.state.rooms.map( (room, index) =>
-            <p className="rooms" key={index} onClick = { room => this.props.setActiveRoom(room) }> {room.name}</p>,
+            <p className="rooms" key={index} onClick = { () => this.props.setActiveRoom(room) }> {room.name}</p>,
           )
         }
 
@@ -47,7 +47,7 @@ class RoomList extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        
+
       </section>
 
     );

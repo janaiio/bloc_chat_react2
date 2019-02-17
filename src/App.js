@@ -25,7 +25,7 @@ class App extends Component {
     }
   }
 
-  setActiveRoom(room, e) { //this method sets the active room based on which the user clicks
+  setActiveRoom(room) { //this method sets the active room based on which the user clicks
     console.log('called');
     this.setState({ activeRoom: room });
   }
