@@ -3,6 +3,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
+//import User from './components/User.js';
 
 // Initialize Firebase
 var config = {
@@ -19,22 +20,25 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      activeRoom: null
+      activeRoom: null,
+      username: ''
     }
   }
 
   setActiveRoom(room, index) { //this method sets the active room based on which the user clicks
-      this.setState({ activeRoom: room.key });
+      this.setState({ activeRoom: this.props.room });
   }
-
-
   //We need a method that will filter the MessageList based on the active roomID
+
+  setUser(e){
+    this.setState({ user: e.target.value });
+  }
 
   render() {
     return (
       <div className="App">
         <RoomList
-          onClick = { this.setActiveRoom.bind(this) }
+          setActiveRoom={this.setActiveRoom.bind(this)}
           firebase={ firebase }
           rooms={ this.props.rooms }
         />
@@ -42,6 +46,7 @@ class App extends Component {
           firebase={ firebase }
           messages={ this.props.messages }
         />
+
       </div>
     );
   }

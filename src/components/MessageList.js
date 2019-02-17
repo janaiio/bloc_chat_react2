@@ -26,7 +26,12 @@ class MessageList extends Component {
 //    {
 //      username: "<USERNAME HERE>",
 //      content: "<CONTENT OF THE MESSAGE HERE>",
-//      sentAt: "<TIME MESSAGE WAS SENT HERE>",
+//      sentAt: "<TIME MESSAGE WAS SENT HERE>", {}
+//          var sessionsRef = firebase.database().ref("sessions");
+//          sessionsRef.push({
+//          startedAt: firebase.database.ServerValue.TIMESTAMP
+//          });
+//       };
 //      roomId: "<ROOM UID HERE>"
 //  };
 

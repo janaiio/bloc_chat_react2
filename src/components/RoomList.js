@@ -19,7 +19,7 @@ class RoomList extends Component {
       });
     }
 
-    createRoom(e){ //adds an object(terminology?) "newRoomName" to the array
+    createRoom(e){ //adds an object(check terminology) "newRoomName" to the array
       const newRoomName = this.state.newRoomName;
       e.preventDefault()
       this.roomsRef.push({
@@ -33,7 +33,7 @@ class RoomList extends Component {
 
   render() {
     return (
-      <section>
+      <section onClick = { this.props.setActiveRoom }>
         {
           this.state.rooms.map( (room, index) =>
             <p className="rooms" key={index} > {room.name}</p>,
