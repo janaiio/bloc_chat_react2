@@ -20,17 +20,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      activeRoom: null,
-      username: ''
+      activeRoom: '',
+      user: ''
     }
   }
 
-  setActiveRoom(room, index) { //this method sets the active room based on which the user clicks
-      this.props.room = this.props.room.value;
-      this.setState({ activeRoom: this.props.room.value });
-      console.log('called');
+  setActiveRoom(room, e) { //this method sets the active room based on which the user clicks
+    console.log('called');
+    this.setState({ activeRoom: room });
   }
-  //We need a method that will filter the MessageList based on the active roomID
 
   setUser(e){
     this.setState({ user: e.target.value });
@@ -39,17 +37,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <RoomList
-          setActiveRoom={ this.setActiveRoom.bind(this) }
-          firebase={ firebase }
-          rooms={ this.props.rooms }
-        />
-        <MessageList
-          setActiveRoom={ this.setActiveRoom.bind(this) }
-          firebase={ firebase }
-          messages={ this.props.messages }
-        />
-
+      <RoomList
+        setActiveRoom={ this.setActiveRoom.bind(this) }
+        firebase={ firebase }
+        rooms={ this.props.rooms }
+      />
+      {
+        this.state.activeRoom ? (
+          <MessageList
+            setActiveRoom={ this.setActiveRoom.bind(this) }
+            firebase={ firebase }
+            messages={ this.props.messages }
+          />
+        ) : null
+      }
       </div>
     );
   }
