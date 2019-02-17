@@ -26,7 +26,9 @@ class App extends Component {
   }
 
   setActiveRoom(room, index) { //this method sets the active room based on which the user clicks
-      this.setState({ activeRoom: this.props.room });
+      this.props.room = this.props.room.value;
+      this.setState({ activeRoom: this.props.room.value });
+      console.log('called');
   }
   //We need a method that will filter the MessageList based on the active roomID
 
@@ -38,11 +40,12 @@ class App extends Component {
     return (
       <div className="App">
         <RoomList
-          setActiveRoom={this.setActiveRoom.bind(this)}
+          setActiveRoom={ this.setActiveRoom.bind(this) }
           firebase={ firebase }
           rooms={ this.props.rooms }
         />
         <MessageList
+          setActiveRoom={ this.setActiveRoom.bind(this) }
           firebase={ firebase }
           messages={ this.props.messages }
         />

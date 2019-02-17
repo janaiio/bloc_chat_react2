@@ -33,10 +33,10 @@ class RoomList extends Component {
 
   render() {
     return (
-      <section onClick = { this.props.setActiveRoom }>
+      <section>
         {
           this.state.rooms.map( (room, index) =>
-            <p className="rooms" key={index} > {room.name}</p>,
+            <p className="rooms" key={index} value={room} onClick = { this.props.setActiveRoom }> {room.name}</p>,
           )
         }
 
