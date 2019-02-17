@@ -45,9 +45,8 @@ class App extends Component {
       {
         this.state.activeRoom ? (
           <MessageList
-            setActiveRoom={ this.setActiveRoom.bind(this) }
+            activeRoom={ this.state.activeRoom }
             firebase={ firebase }
-            messages={ this.props.messages }
           />
         ) : null
       }

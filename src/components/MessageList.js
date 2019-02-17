@@ -18,6 +18,21 @@ class MessageList extends Component {
     });
   }
 
+  sendMessages(e){
+    const newMessage = this.state.messages;
+    e.preventDefault()
+    this.messagesRef.push({
+      username: this.props.user,
+      content: newMessage,
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
+      roomID: this.props.activeRoom.key
+    });
+  }
+
+  handleChange(e){
+    this.setState({ messages: e.target.value });
+  }
+
   render(){
     return(
       <section>
