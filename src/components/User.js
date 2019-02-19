@@ -3,15 +3,11 @@ import React, { Component } from 'react';
 class User extends Component {
   constructor(props){
     super(props);
-  }
+    this.state = {
+      users: ''
+    };
 
-  signInWithPopup(e){
-    const provider = new this.props.firebase.auth.GoogleAuthProvider();
-    this.props.firebase.auth().signInWithPopup( provider );
-  }
-
-  signOutWithPopup(e){
-    this.props.firebase.auth().signOut();
+    this.usersRef = this.props.firebase.database().ref('users');
   }
 
   componentDidMount(){
@@ -20,19 +16,16 @@ class User extends Component {
     });
   }
 
-//  displayName(user){
 
-    //if user is a user, or equal to e.target.value
-//    const isUser = this.props.user;
-//    if (isUser){
-//      return this.props.user.displayName;
-//    }
+    signInWithPopup(e){
+      const provider = new this.props.firebase.auth.GoogleAuthProvider();
+      this.props.firebase.auth().signInWithPopup( provider );
+      console.log('sign in');
+    }
 
-    //if user is a guest
-//    else (!isUser){
-
-//    }
-//  }
+    signOutWithPopup(e){
+      this.props.firebase.auth().signOut();
+    }
 
   render(){
     return(
@@ -40,7 +33,6 @@ class User extends Component {
         {
           this.props.user.displayName
         }
-
         <button id="signIn" onClick={ e => this.signInWithPopup(e) }>Sign In</button>
         <button id="signOut" onClick={ e => this.signOutWithPopup(e) }>Sign Out</button>
       </section>

@@ -3,7 +3,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
-//import User from './components/User.js';
+import User from './components/User.js';
 
 // Initialize Firebase
 var config = {
@@ -26,21 +26,22 @@ class App extends Component {
   }
 
   setActiveRoom(room) { //this method sets the active room based on which the user clicks
-    console.log('called');
     this.setState({ activeRoom: room });
+    console.log('active room set');
   }
 
   setUser(e){
-    this.setState({ user: e.target.value });
+    this.setState({ user: e.target.value }); //change value, User UID?
+    console.log('user set');
   }
 
   render() {
     return (
       <div className="App">
       <RoomList
-        setActiveRoom={ this.setActiveRoom.bind(this) }
         firebase={ firebase }
         rooms={ this.props.rooms }
+        setActiveRoom={ this.setActiveRoom.bind(this) }
       />
       {
         this.state.activeRoom ? (
@@ -50,6 +51,11 @@ class App extends Component {
           />
         ) : null
       }
+      <User
+        firebase={ firebase }
+        setUser={ this.setUser.bind(this) }
+        user={ this.state.user }
+      />
       </div>
     );
   }
