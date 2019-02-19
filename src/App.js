@@ -48,6 +48,8 @@ class App extends Component {
           <MessageList
             activeRoom={ this.state.activeRoom }
             firebase={ firebase }
+            messages={ this.state.messages }
+            newMessage={ this.state.newMessage }
           />
         ) : null
       }

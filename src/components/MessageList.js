@@ -4,7 +4,8 @@ class MessageList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      messages: []
+      messages: [],
+      newMessage: ''
     };
 
     this.messagesRef = this.props.firebase.database().ref('Messages');
@@ -19,7 +20,7 @@ class MessageList extends Component {
   }
 
   sendMessages(e){
-    const newMessage = this.state.messages;
+    const newMessage = this.state.newMessage;
     e.preventDefault()
     this.messagesRef.push({
       username: this.props.user,
@@ -30,7 +31,7 @@ class MessageList extends Component {
   }
 
   handleChange(e){
-    this.setState({ messages: e.target.value });
+    this.setState({ newMessage: e.target.value });
   }
 
   render(){
@@ -39,10 +40,18 @@ class MessageList extends Component {
       {
         this.state.messages.filter( message => message.roomID === this.props.activeRoom.key)
         .map( (message, index) =>
-          <p className="messages" key={index}>{message.content}</p>,
+          <p className="messages" key={index}>{message.username} {message.content} {message.sentAt}</p>,
         )
 
       }
+
+      <form onSubmit={(e) => this.sendMessages(e)}>
+        <label>
+          Write Your Message Here:
+          <input type="text" value={this.state.newMessage} onChange={ e => this.handleChange(e) }/>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
 
       </section>
     );
