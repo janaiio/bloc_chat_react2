@@ -30,10 +30,9 @@ class App extends Component {
     console.log('active room set');
   }
 
-  setUser(e){
-    this.setState({ user: e.target.value }); //change value, User UID?
-    console.log('user set');
-  }
+  setUser(user){
+      this.setState({ user: user }); //change value, User UID?
+    }
 
   render() {
     return (

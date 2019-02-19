@@ -8,13 +8,13 @@ class User extends Component {
   }
 
   componentDidMount(){
-    this.props.firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log('User is signed in')
-      } else {
-        console.log('No user is signed in')
-      }
-    });
+      this.props.firebase.auth().onAuthStateChanged((user) => {
+          if(user){
+              this.props.setUser(user);
+          } else {
+              this.props.setUser('Guest')
+          }
+      });
   }
 
     signInWithPopup(e){
@@ -25,13 +25,14 @@ class User extends Component {
 
     signOutWithPopup(e){
       this.props.firebase.auth().signOut();
+      console.log('sign out');
     }
 
   render(){
     return(
       <section className="user-signInOut">
         {
-          this.props.user
+          this.props.user.displayName
         }
 
         <button id="signIn" onClick={ e => this.signInWithPopup(e) }>Sign In</button>
