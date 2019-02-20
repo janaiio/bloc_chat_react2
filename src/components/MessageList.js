@@ -23,7 +23,7 @@ class MessageList extends Component {
     const newMessage = this.state.newMessage;
     e.preventDefault()
     this.messagesRef.push({
-      username: this.props.user,
+      username: this.props.firebase.auth().currentUser.displayName,
       content: newMessage,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
       roomID: this.props.activeRoom.key

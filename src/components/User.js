@@ -10,6 +10,7 @@ class User extends Component {
   componentDidMount(){
       this.props.firebase.auth().onAuthStateChanged((user) => {
           if(user){
+//            console.log(user.uid);
               this.props.setUser(user);
           } else {
               this.props.setUser('Guest')
